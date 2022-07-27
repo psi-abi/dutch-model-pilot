@@ -2,9 +2,6 @@ streamlit
 pandas
 numpy
 datetime
-json
-os
 ssl
 ast
 io
-xlsxwriter
