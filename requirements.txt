@@ -2,7 +2,7 @@ streamlit
 pandas
 numpy
 datetime
-urllib
+urllib.request
 json
 os
 ssl
