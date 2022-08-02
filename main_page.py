@@ -30,6 +30,9 @@ st.sidebar.markdown("Feed the User Inputs with correct information, and then sel
 st.sidebar.markdown("The rule recommendations will be generated in a few seconds. You can change any recommendation.")
 st.sidebar.markdown("Once the rules are acceptable, you can download the file by clicking the 'Export data' button")
 
+link = '[Feedback](https://forms.office.com/r/sitNFfzSDJ)'
+st.sidebar.markdown(link, unsafe_allow_html=True)
+st.sidebar.markdown("")
 
 ############################################################
 
