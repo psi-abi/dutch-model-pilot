@@ -26,9 +26,8 @@ st.set_page_config(
 
 st.sidebar.markdown("# Dutch-Reverse Auction Pilot")
 st.sidebar.markdown("This tool provides recommendendations for Dutch-Reverse auctions.")
-st.sidebar.markdown("Feed the User Inputs with correct information, and then select YES in the 'Submit Inputs' section.")
-st.sidebar.markdown("The rule recommendations will be generated in a few seconds. You can change any recommendation.")
-st.sidebar.markdown("Once the rules are acceptable, you can download the file by clicking the 'Export data' button")
+st.sidebar.markdown("Feed the User Inputs, and then select YES in the 'Submit Inputs' section. The recommendations will be generated in a few seconds. You can change any recommendation.")
+st.sidebar.markdown("You can download the rule recommendations by clicking the 'Export data' button.")
 
 link = '[Feedback](https://forms.office.com/r/sitNFfzSDJ)'
 st.sidebar.markdown(link, unsafe_allow_html=True)
