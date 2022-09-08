@@ -75,8 +75,8 @@ def getOutput(data):
 
     body = str.encode(json.dumps(data))
 
-    url = 'http://eaff69b7-973c-4f1e-9b08-59de1bffb6d0.westeurope.azurecontainer.io/score'
-    api_key = 'gKROKYPBInJsxJbY6ZDmG2IYDyT7LBdT' # Replace this with the API key for the web service
+    url = 'http://8881f677-b6d8-4d43-b99c-5709f371e832.westeurope.azurecontainer.io/score'
+    api_key = '2oujYRZIWlQdYd0eUZjUFJzp5Uo4FhQV' # Replace this with the API key for the web service
 
     headers = {'Content-Type':'application/json', 'Authorization':('Bearer '+ api_key)}
 
