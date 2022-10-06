@@ -93,7 +93,9 @@ def getOutput(data):
 
 ####################
 
-col1, col2, col3, col4 = st.columns([1, 1, 1, 1])
+col1, col2, col3 = st.columns([1, 1, 1])
+
+
 
 with col1:
     
@@ -104,8 +106,17 @@ with col1:
 
     st.markdown("")
 
-    baselinespend_usd = st.number_input("Baseline Spend (in USD)", 1, 10**7)
-
+    baselinespend_usd = st.number_input("Baseline Spend", 1, 10**7)
+    
+    st.markdown("")
+    
+    commodity = st.selectbox(
+        "Commodity", 
+        ['CAPEX', 'Simple Packages', 'Logistics', 'RAU', 'Commercial', 'Packaging'], 
+        index=0)
+    
+    
+    
 with col2:
 
     zone = st.selectbox(
@@ -115,28 +126,33 @@ with col2:
 
     st.markdown("")
 
-    bestbid_usd = st.number_input("BFQ Spend (in USD)", 1, 10**7)
+    bestbid_usd = st.number_input("BFQ Spend", 1, 10**7)
+    
+    st.markdown("")
+    
+    invited_suppliers = st.slider("Invited Suppliers", 1, 20)
 
+    
 
 with col3:
 
-    commodity = st.selectbox(
-        "Commodity", 
-        ['CAPEX', 'Simple Packages', 'Logistics', 'RAU', 'Commercial', 'Packaging'], 
-        index=0)
+    currency = st.selectbox("Currency", 
+                            [
+                                'AED','ARS','AUD','BOB','BRL','BWP','CAD','CHF','CLP','CNY','COP','CZK','DKK','DOP','ETB','EUR','GBP',
+                                'GHC','GTQ','HKD','HNL','HUF','ILS','INR','JPY','KES','KRW','LSL','MUR','MWK','MXN','MYR','MZN','NAD',
+                                'NGN','NOK','NZD','PEN','PLN','PYG','RUB','SDP','SEK','SGD','SZL','TRY','TZS','UAH','UGX','USD','UYU',
+                                'VND','ZAR','ZMK'
+                            ])    
 
     st.markdown("")
 
-    auction_historic_total = st.number_input("Historical Spend (in USD)", 1, 10**7)
-
-
-with col4:
-
-    invited_suppliers = st.slider("Invited Suppliers", 1, 20)    
-
+    auction_historic_total = st.number_input("Historical Spend", 1, 10**7)
+    
     st.markdown("")
 
     submit_button = st.radio(label='Submit Inputs', options=['NO', 'YES'])
+        
+
 
 ####################
 
@@ -144,6 +160,7 @@ data = {
     'auction_name'             : auction_name,
     'date'                     : str(datetime.now()),
     'zone'                     : zone,
+    'currency'                 : currency,
     'commodity'                : commodity,
     'invited_suppliers'        : invited_suppliers,
     'baselinespend_usd'        : baselinespend_usd,
