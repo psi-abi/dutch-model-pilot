@@ -179,168 +179,169 @@ data = {
 
 if submit_button == 'YES':
     
-    try:
-        st.write("")
-        st.markdown("### Auction Edge Recommendations")
-        st.markdown("")
-        # st.write("")
+#     try:
         
-        ####################
+    st.write("")
+    st.markdown("### Auction Edge Recommendations")
+    st.markdown("")
+    # st.write("")
 
-        result = getOutput(data)        
+    ####################
 
-        s = json.loads(result)
-        x = ast.literal_eval(s)
-        ae_rec = {}
+    result = getOutput(data)        
 
-        for i in range(len(x['index'])):
-            ae_rec[x['index'][i]] = x['data'][i][0]
+    s = json.loads(result)
+    x = ast.literal_eval(s)
+    ae_rec = {}
 
-
-
-        st.sidebar.markdown(f"## Please use auction name '{ae_rec['auction_name']}' while conducting the auction on Ariba")
-        
-        ####################
-
-        rule_cat = [
-            'Show bid graph to all participants',
-            'Show participant responses to other participants',
-            'Hide countdown clock from participants',
-        ]
+    for i in range(len(x['index'])):
+        ae_rec[x['index'][i]] = x['data'][i][0]
 
 
-        final_rec = {}
-    
+
+    st.sidebar.markdown(f"## Please use auction name '{ae_rec['auction_name']}' while conducting the auction on Ariba")
+
+    ####################
+
+    rule_cat = [
+        'Show bid graph to all participants',
+        'Show participant responses to other participants',
+        'Hide countdown clock from participants',
+    ]
 
 
-        col0, col1, col2 = st.columns([1,1,1])
+    final_rec = {}
 
-        with col0:
-            recc = st.selectbox(
-                rule_cat[0],
-                [ae_rec[rule_cat[0]], [i for i in ['Yes', 'No'] if i not in [ae_rec[rule_cat[0]]]][0]],
-                index=0,
-            )
-            final_rec[rule_cat[0]] = recc
 
-        with col1:
-            recc = st.selectbox(
-                rule_cat[1],
-                [ae_rec[rule_cat[1]], [i for i in ['Yes', 'No'] if i not in [ae_rec[rule_cat[1]]]][0]],
-                index=0,
-            )
-            final_rec[rule_cat[1]] = recc
 
-        with col2:
-            recc = st.selectbox(
-                rule_cat[2],
-                [ae_rec[rule_cat[2]], [i for i in ['Yes', 'No'] if i not in [ae_rec[rule_cat[2]]]][0]],
-                index=0,
-            )
-            final_rec[rule_cat[2]] = recc
+    col0, col1, col2 = st.columns([1,1,1])
 
+    with col0:
+        recc = st.selectbox(
+            rule_cat[0],
+            [ae_rec[rule_cat[0]], [i for i in ['Yes', 'No'] if i not in [ae_rec[rule_cat[0]]]][0]],
+            index=0,
+        )
+        final_rec[rule_cat[0]] = recc
+
+    with col1:
+        recc = st.selectbox(
+            rule_cat[1],
+            [ae_rec[rule_cat[1]], [i for i in ['Yes', 'No'] if i not in [ae_rec[rule_cat[1]]]][0]],
+            index=0,
+        )
+        final_rec[rule_cat[1]] = recc
+
+    with col2:
+        recc = st.selectbox(
+            rule_cat[2],
+            [ae_rec[rule_cat[2]], [i for i in ['Yes', 'No'] if i not in [ae_rec[rule_cat[2]]]][0]],
+            index=0,
+        )
+        final_rec[rule_cat[2]] = recc
+
+    st.write("")
+
+    ####################
+
+    col0, col1, col2 = st.columns([1,1,1])
+
+    with col0:
+        recc_runtime = st.number_input(
+            label='Running time for the first lot (in Minutes)',
+            min_value=0,
+            max_value=1000,
+            value=ae_rec['Running time for the first lot'],
+            step = 5
+        )
+        final_rec['Running time for the first lot'] = str(recc_runtime) + ' Minutes'
+
+    with col1:
+        recc_lottime = st.number_input(
+            label='Time between lot closing (in Minutes)',
+            min_value=0,
+            max_value=1000,
+            value=ae_rec['Time between lot closing'],
+            step = 5
+        )
+        final_rec['Time between lot closing'] = str(recc_lottime) + ' Minutes'
+
+    with col2:
+        recc_bidtime = st.number_input(
+            label='Bid adjustment interval (in Seconds)',
+            min_value=0,
+            max_value=300,
+            value=ae_rec['Bid adjustment interval'],
+            step = 5
+        )
+        final_rec['Bid adjustment interval'] = str(recc_bidtime) + ' Seconds'
+
+    st.write("")
+
+
+    col0, col1, col2 = st.columns([1,1,1])
+
+    with col0:
+        recc_bidamount = st.number_input(
+            label='Adjust bid amount by (in chosen currency)',
+            min_value=0,
+            max_value=10**7,
+            value=ae_rec['Adjust bid amount by'],
+        )
+        final_rec['Adjust bid amount by (in chosen currency)'] = recc_bidamount
+
+    with col1:
+        recc_iniamount = st.number_input(
+            label='Auction Starting Price (in chosen currency)',
+            min_value=0,
+            max_value=10**7,
+            value=ae_rec['auction_initial_total'],
+        )
+        final_rec['Auction Starting Price (in chosen currency)'] = recc_iniamount
+
+    with col2:
+        recc = st.selectbox(
+            'Allow participants to select bidding currency',
+            ['No', 'Yes'],
+            index=0,
+        )
+        final_rec['Allow participants to select bidding currency'] = recc
+
+    st.write("")
+
+
+
+    col0, col1, col2 = st.columns([1,1,1])
+
+    with col0:
+        recc = st.selectbox(
+            'Require participant to give a reason for declining to bid',
+            ['No', 'Yes'],
+            index=0,
+        )
+        final_rec['Require participant to give a reason for declining to bid'] = recc
+
+    with col1:
+        recc = st.selectbox(
+            'Hide the number of bidders by using the same participant alias',
+            ['No', 'Yes'],
+            index=0,
+        )
+        final_rec['Hide the number of bidders by using the same participant alias'] = recc
+
+    with col2:
         st.write("")
-        
-        ####################
-
-        col0, col1, col2 = st.columns([1,1,1])
-
-        with col0:
-            recc_runtime = st.number_input(
-                label='Running time for the first lot (in Minutes)',
-                min_value=0,
-                max_value=1000,
-                value=ae_rec['Running time for the first lot'],
-                step = 5
-            )
-            final_rec['Running time for the first lot'] = str(recc_runtime) + ' Minutes'
-
-        with col1:
-            recc_lottime = st.number_input(
-                label='Time between lot closing (in Minutes)',
-                min_value=0,
-                max_value=1000,
-                value=ae_rec['Time between lot closing'],
-                step = 5
-            )
-            final_rec['Time between lot closing'] = str(recc_lottime) + ' Minutes'
-
-        with col2:
-            recc_bidtime = st.number_input(
-                label='Bid adjustment interval (in Seconds)',
-                min_value=0,
-                max_value=300,
-                value=ae_rec['Bid adjustment interval'],
-                step = 5
-            )
-            final_rec['Bid adjustment interval'] = str(recc_bidtime) + ' Seconds'
-            
         st.write("")
+        recc = st.selectbox(
+            'Enable approval for team grading',
+            ['No', 'Yes'],
+            index=0,
+        )
+        final_rec['Enable approval for team grading'] = recc
 
-
-        col0, col1, col2 = st.columns([1,1,1])
-
-        with col0:
-            recc_bidamount = st.number_input(
-                label='Adjust bid amount by (in chosen currency)',
-                min_value=0,
-                max_value=10**7,
-                value=ae_rec['Adjust bid amount by'],
-            )
-            final_rec['Adjust bid amount by (in chosen currency)'] = recc_bidamount
-
-        with col1:
-            recc_iniamount = st.number_input(
-                label='Auction Starting Price (in chosen currency)',
-                min_value=0,
-                max_value=10**7,
-                value=ae_rec['auction_initial_total'],
-            )
-            final_rec['Auction Starting Price (in chosen currency)'] = recc_iniamount
-        
-        with col2:
-            recc = st.selectbox(
-                'Allow participants to select bidding currency',
-                ['No', 'Yes'],
-                index=0,
-            )
-            final_rec['Allow participants to select bidding currency'] = recc
-
-        st.write("")
-
-    
-
-        col0, col1, col2 = st.columns([1,1,1])
-
-        with col0:
-            recc = st.selectbox(
-                'Require participant to give a reason for declining to bid',
-                ['No', 'Yes'],
-                index=0,
-            )
-            final_rec['Require participant to give a reason for declining to bid'] = recc
-
-        with col1:
-            recc = st.selectbox(
-                'Hide the number of bidders by using the same participant alias',
-                ['No', 'Yes'],
-                index=0,
-            )
-            final_rec['Hide the number of bidders by using the same participant alias'] = recc
-
-        with col2:
-            st.write("")
-            st.write("")
-            recc = st.selectbox(
-                'Enable approval for team grading',
-                ['No', 'Yes'],
-                index=0,
-            )
-            final_rec['Enable approval for team grading'] = recc
-
-    except:
-        st.error("Please check your inputs")
-        st.stop()
+#     except:
+#         st.error("Please check your inputs")
+#         st.stop()
 
 
     ### Default values
