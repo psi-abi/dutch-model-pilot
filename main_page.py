@@ -157,15 +157,15 @@ with col3:
 ####################
 
 data = {
-    'auction_name'             : auction_name,
-    'date'                     : str(datetime.now()),
-    'zone'                     : zone,
-    'currency'                 : currency,
-    'commodity'                : commodity,
-    'invited_suppliers'        : invited_suppliers,
-    'baselinespend_usd'        : baselinespend_usd,
-    'bestbid_usd'              : bestbid_usd,
-    'auction_historic_total'   : auction_historic_total
+    'auction_name'                   : auction_name,
+    'date'                           : str(datetime.now()),
+    'zone'                           : zone,
+    'currency'                       : currency,
+    'commodity'                      : commodity,
+    'invited_suppliers'              : invited_suppliers,
+    'baselinespend_local'            : baselinespend_usd,
+    'bfq_local'                      : bestbid_usd,
+    'auction_historic_total_local'   : auction_historic_total
 }
 
 
@@ -282,21 +282,21 @@ if submit_button == 'YES':
 
         with col0:
             recc_bidamount = st.number_input(
-                label='Adjust bid amount by (in USD)',
+                label='Adjust bid amount by (in ' + currency + ')',
                 min_value=0,
                 max_value=10**7,
                 value=ae_rec['Adjust bid amount by'],
             )
-            final_rec['Adjust bid amount by (in USD)'] = recc_bidamount
+            final_rec['Adjust bid amount by (in ' + currency + ')'] = recc_bidamount
 
         with col1:
             recc_iniamount = st.number_input(
-                label='Auction Starting Price (in USD)',
+                label='Auction Starting Price (in ' + currency + ')',
                 min_value=0,
                 max_value=10**7,
                 value=ae_rec['auction_initial_total'],
             )
-            final_rec['Auction Starting Price (in USD)'] = recc_iniamount
+            final_rec['Auction Starting Price (in ' + currency + ')'] = recc_iniamount
         
         with col2:
             recc = st.selectbox(
