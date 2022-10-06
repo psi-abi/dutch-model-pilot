@@ -282,21 +282,21 @@ if submit_button == 'YES':
 
         with col0:
             recc_bidamount = st.number_input(
-                label='Adjust bid amount by (in ' + currency + ')',
+                label='Adjust bid amount by (in ' & currency & ')',
                 min_value=0,
                 max_value=10**7,
                 value=ae_rec['Adjust bid amount by'],
             )
-            final_rec['Adjust bid amount by (in ' + currency + ')'] = recc_bidamount
+            final_rec['Adjust bid amount by (in ' & currency & ')'] = recc_bidamount
 
         with col1:
             recc_iniamount = st.number_input(
-                label='Auction Starting Price (in ' + currency + ')',
+                label='Auction Starting Price (in ' & currency & ')',
                 min_value=0,
                 max_value=10**7,
                 value=ae_rec['auction_initial_total'],
             )
-            final_rec['Auction Starting Price (in ' + currency + ')'] = recc_iniamount
+            final_rec['Auction Starting Price (in ' & currency & ')'] = recc_iniamount
         
         with col2:
             recc = st.selectbox(
