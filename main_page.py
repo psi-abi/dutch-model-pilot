@@ -351,13 +351,13 @@ if submit_button == 'YES':
     df = df.reset_index(drop=False).rename(columns={'index' : 'ID'}).astype('str')
     
     df_xlsx = convert_df(df)
-
+    
+    name = ae_rec['auction_name']
+    
     st.download_button(
         label="Export data",
         data=df_xlsx,
-        # file_name = ae_rec['auction_name'] + '.csv',
-        file_name = ae_rec['auction_name'] + '.xlsx',
-        # mime='text/csv'
+        file_name = name + '.xlsx',
         )
 
-    st.sidebar.markdown(f"## Please use auction name '{ae_rec['auction_name']}' while conducting the auction on Ariba")
+    st.sidebar.markdown(f"## Please use auction name '{name}' while conducting the auction on Ariba")
