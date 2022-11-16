@@ -49,7 +49,7 @@ st.markdown("")
 # @st.cache
 def convert_df(df):
     
-    df2 = pd.DataFrame(columns='Auction Name', values= ae_rec['auction_name'])
+    df2 = pd.DataFrame(columns=['Auction Name'], values= ae_rec['auction_name'])
     st.markdown(df2)
     
     output = BytesIO()
