@@ -199,8 +199,6 @@ if submit_button == 'YES':
 
 
 
-    st.sidebar.markdown(f"## Please use auction name '{ae_rec['auction_name']}' while conducting the auction on Ariba")
-
     ####################
 
     rule_cat = [
@@ -361,3 +359,5 @@ if submit_button == 'YES':
         file_name = ae_rec['auction_name'] + '.xlsx',
         # mime='text/csv'
         )
+
+    st.sidebar.markdown(f"## Please use auction name '{ae_rec['auction_name']}' while conducting the auction on Ariba")
