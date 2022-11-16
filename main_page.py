@@ -355,12 +355,12 @@ if submit_button == 'YES':
     df = pd.DataFrame(final_rec.values(), index=final_rec.keys(), columns=['Value'])
     df = df.reset_index(drop=False).rename(columns={'index' : 'ID'}).astype('str')
     
-    df_xlsx = convert_df(df)
+#     df_xlsx = convert_df(df)
     
     st.download_button(
             label="Export data",
-            data=df_xlsx,
-            file_name = 'dutchAuctionEdge.xlsx',
+            data=convert_df(df),
+            file_name = ae_rec['auction_name'] + '.xlsx',
             )
      
     st.sidebar.markdown("## Please use auction name as mentioned in the downloaded file while conducting the auction on Ariba")
