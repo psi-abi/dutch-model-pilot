@@ -199,7 +199,7 @@ if submit_button == 'YES':
         ae_rec[x['index'][i]] = x['data'][i][0]
 
     
-    if name = '':
+    if name == '':
         name = ae_rec['auction_name']
     
     ####################
