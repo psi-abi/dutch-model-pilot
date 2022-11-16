@@ -49,11 +49,8 @@ st.markdown("")
 # @st.cache
 def convert_df(df):
     
-    df2 = pd.DataFrame()
-    
-    st.markdown(ae_rec['auction_name'])
-    
-    df2['Auction Name'] = ae_rec['auction_name']
+    df2 = pd.DataFrame(ae_rec['auction_name'])
+    st.markdown(df2)
     
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
