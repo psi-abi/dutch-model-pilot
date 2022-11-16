@@ -198,7 +198,8 @@ if submit_button == 'YES':
         ae_rec[x['index'][i]] = x['data'][i][0]
 
 
-
+    name = ae_rec['auction_name']
+    
     ####################
 
     rule_cat = [
@@ -351,9 +352,7 @@ if submit_button == 'YES':
     df = df.reset_index(drop=False).rename(columns={'index' : 'ID'}).astype('str')
     
     df_xlsx = convert_df(df)
-    
-    name = ae_rec['auction_name']
-    
+        
     st.download_button(
         label="Export data",
         data=df_xlsx,
