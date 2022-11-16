@@ -168,6 +168,7 @@ data = {
     'auction_historic_total_local'   : auction_historic_total
 }
 
+name = ''
 
 ############################################################
 
@@ -197,8 +198,9 @@ if submit_button == 'YES':
     for i in range(len(x['index'])):
         ae_rec[x['index'][i]] = x['data'][i][0]
 
-
-    name = ae_rec['auction_name']
+    
+    if name = '':
+        name = ae_rec['auction_name']
     
     ####################
 
