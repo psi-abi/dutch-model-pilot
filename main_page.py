@@ -168,7 +168,6 @@ data = {
     'auction_historic_total_local'   : auction_historic_total
 }
 
-name = ''
 
 ############################################################
 
@@ -199,8 +198,6 @@ if submit_button == 'YES':
         ae_rec[x['index'][i]] = x['data'][i][0]
 
     
-    if name == '':
-        name = ae_rec['auction_name']
     
     ####################
 
@@ -354,11 +351,12 @@ if submit_button == 'YES':
     df = df.reset_index(drop=False).rename(columns={'index' : 'ID'}).astype('str')
     
     df_xlsx = convert_df(df)
-        
-    st.download_button(
-        label="Export data",
-        data=df_xlsx,
-        file_name = name + '.xlsx',
-        )
-
-    st.sidebar.markdown(f"## Please use auction name '{name}' while conducting the auction on Ariba")
+    
+    name = ae_rec['auction_name']
+    
+    if st.download_button(
+            label="Export data",
+            data=df_xlsx,
+            file_name = name + '.xlsx',
+            ):
+        st.sidebar.markdown(f"## Please use auction name '{name}' while conducting the auction on Ariba")
