@@ -48,10 +48,15 @@ st.markdown("")
 
 # @st.cache
 def convert_df(df):
-    # return df.to_csv(index=False).encode('utf-8')
+    
+    df2 = pd.DataFrame()
+    df2['Auction Name'] = ae_rec['auction_name']
+    
     output = BytesIO()
     writer = pd.ExcelWriter(output, engine='xlsxwriter')
     df.to_excel(writer, index=False, sheet_name='Rules')
+    df2.to_excel(writer, index=False, sheet_name='Auction Name')
+    
     workbook = writer.book
     worksheet = writer.sheets['Rules']
     format1 = workbook.add_format({'num_format': '0.00'}) 
@@ -355,7 +360,7 @@ if submit_button == 'YES':
     st.download_button(
             label="Export data",
             data=df_xlsx,
-            file_name = ae_rec['auction_name'] + '.xlsx',
+            file_name = 'dutchAuctionEdge.xlsx',
             )
      
     st.sidebar.markdown("## Please use auction name as mentioned in the downloaded file while conducting the auction on Ariba")
