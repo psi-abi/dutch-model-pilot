@@ -50,6 +50,9 @@ st.markdown("")
 def convert_df(df):
     
     df2 = pd.DataFrame()
+    
+    st.markdown(ae_rec['auction_name'])
+    
     df2['Auction Name'] = ae_rec['auction_name']
     
     output = BytesIO()
