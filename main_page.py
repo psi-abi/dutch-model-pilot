@@ -352,11 +352,10 @@ if submit_button == 'YES':
     
     df_xlsx = convert_df(df)
     
-    name = ae_rec['auction_name']
-    
-    if st.download_button(
+    st.download_button(
             label="Export data",
             data=df_xlsx,
-            file_name = name + '.xlsx',
-            ):
-        st.sidebar.markdown(f"## Please use auction name '{name}' while conducting the auction on Ariba")
+            file_name = ae_rec['auction_name'] + '.xlsx',
+            )
+     
+    st.sidebar.markdown("## Please use auction name as mentioned in the downloaded file while conducting the auction on Ariba")
