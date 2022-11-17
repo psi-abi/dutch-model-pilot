@@ -115,10 +115,7 @@ with col1:
     
     st.markdown("")
     
-    commodity = st.selectbox(
-        "Commodity", 
-        ['CAPEX', 'Simple Packages', 'Logistics', 'RAU', 'Commercial', 'Packaging'], 
-        index=0)
+    
     
     
     
@@ -134,14 +131,12 @@ with col2:
     bestbid_usd = st.number_input("BFQ Spend", 1, 10**7)
     
     st.markdown("")
-    
-    invited_suppliers = st.slider("Invited Suppliers", 1, 20)
 
     
 
 with col3:
 
-    currency = st.selectbox("Currency", 
+    ip_currency = st.selectbox("Input Currency", 
                             [
                                 'AED','ARS','AUD','BOB','BRL','BWP','CAD','CHF','CLP','CNY','COP','CZK','DKK','DOP','ETB','EUR','GBP',
                                 'GHC','GTQ','HKD','HNL','HUF','ILS','INR','JPY','KES','KRW','LSL','MUR','MWK','MXN','MYR','MZN','NAD',
@@ -155,17 +150,49 @@ with col3:
     
     st.markdown("")
 
-    submit_button = st.radio(label='Submit Inputs', options=['NO', 'YES'])
+    
         
 
+        
+        
+col1, col2, col3, col4 = st.columns([2, 2, 1, 1])
 
+with col1:
+    
+    commodity = st.selectbox(
+        "Commodity", 
+        ['CAPEX', 'Simple Packages', 'Logistics', 'RAU', 'Commercial', 'Packaging'], 
+        index=0)
+    
+with col2:
+    
+    invited_suppliers = st.slider("Invited Suppliers", 1, 20)
+    
+with col3:
+    
+    if ip_currency:
+        op_currency = st.selectbox("Output Currency", 
+                            [   ip_currency,
+                                'AED','ARS','AUD','BOB','BRL','BWP','CAD','CHF','CLP','CNY','COP','CZK','DKK','DOP','ETB','EUR','GBP',
+                                'GHC','GTQ','HKD','HNL','HUF','ILS','INR','JPY','KES','KRW','LSL','MUR','MWK','MXN','MYR','MZN','NAD',
+                                'NGN','NOK','NZD','PEN','PLN','PYG','RUB','SDP','SEK','SGD','SZL','TRY','TZS','UAH','UGX','USD','UYU',
+                                'VND','ZAR','ZMK'
+                            ])
+    
+with col4:
+    
+    submit_button = st.radio(label='Submit Inputs', options=['NO', 'YES'])    
+    
+    
+    
 ####################
 
 data = {
     'auction_name'                   : auction_name,
     'date'                           : str(datetime.now()),
     'zone'                           : zone,
-    'currency'                       : currency,
+    'ip_currency'                    : ip_currency,
+    'op_currency'                    : op_currency,
     'commodity'                      : commodity,
     'invited_suppliers'              : invited_suppliers,
     'baselinespend_local'            : baselinespend_usd,
@@ -183,9 +210,7 @@ data = {
 ############################################################
 
 if submit_button == 'YES':
-    
-#     try:
-        
+            
     st.write("")
     st.markdown("### Auction Edge Recommendations")
     st.markdown("")
@@ -286,21 +311,21 @@ if submit_button == 'YES':
 
     with col0:
         recc_bidamount = st.number_input(
-            label='Adjust bid amount by (in ' + currency + ')',
+            label='Adjust bid amount by (in ' + op_currency + ')',
             min_value=0,
             max_value=10**7,
             value=ae_rec['Adjust bid amount by'],
         )
-        final_rec['Adjust bid amount by (in ' + currency + ')'] = recc_bidamount
+        final_rec['Adjust bid amount by (in ' + op_currency + ')'] = recc_bidamount
 
     with col1:
         recc_iniamount = st.number_input(
-            label='Auction Starting Price (in ' + currency + ')',
+            label='Auction Starting Price (in ' + op_currency + ')',
             min_value=0,
             max_value=10**7,
             value=ae_rec['auction_initial_total'],
         )
-        final_rec['Auction Starting Price (in ' + currency + ')'] = recc_iniamount
+        final_rec['Auction Starting Price (in ' + op_currency + ')'] = recc_iniamount
 
     with col2:
         recc = st.selectbox(
@@ -342,9 +367,7 @@ if submit_button == 'YES':
         )
         final_rec['Enable approval for team grading'] = recc
 
-#     except:
-#         st.error("Please check your inputs")
-#         st.stop()
+
 
 
     ### Default values
