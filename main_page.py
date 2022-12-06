@@ -111,7 +111,7 @@ with col1:
 
     st.markdown("")
 
-    baselinespend_usd = st.number_input("Baseline Spend", 1, 10**7)
+    baselinespend_usd = st.number_input("Baseline Spend", 1, 10**15)
     
     st.markdown("")
     
@@ -128,7 +128,7 @@ with col2:
 
     st.markdown("")
 
-    bestbid_usd = st.number_input("BFQ Spend", 1, 10**7)
+    bestbid_usd = st.number_input("BFQ Spend", 1, 10**15)
     
     st.markdown("")
 
@@ -146,7 +146,7 @@ with col3:
 
     st.markdown("")
 
-    auction_historic_total = st.number_input("Historical Spend", 1, 10**7)
+    auction_historic_total = st.number_input("Historical Spend", 1, 10**15)
     
     st.markdown("")
 
@@ -313,7 +313,7 @@ if submit_button == 'YES':
         recc_bidamount = st.number_input(
             label='Adjust bid amount by (in ' + op_currency + ')',
             min_value=0,
-            max_value=10**7,
+            max_value=10**15,
             value=ae_rec['Adjust bid amount by'],
         )
         final_rec['Adjust bid amount by (in ' + op_currency + ')'] = recc_bidamount
@@ -322,7 +322,7 @@ if submit_button == 'YES':
         recc_iniamount = st.number_input(
             label='Auction Starting Price (in ' + op_currency + ')',
             min_value=0,
-            max_value=10**7,
+            max_value=10**15,
             value=ae_rec['auction_initial_total'],
         )
         final_rec['Auction Starting Price (in ' + op_currency + ')'] = recc_iniamount
